@@ -1,0 +1,298 @@
+definitions:
+  v1.Address:
+    properties:
+      city:
+        type: string
+      country:
+        type: string
+      district:
+        type: string
+      postal_code:
+        type: integer
+    type: object
+  v1.Media:
+    properties:
+      id:
+        type: string
+      link:
+        type: string
+      type:
+        type: string
+    type: object
+  v1.Post:
+    properties:
+      description:
+        type: string
+      id:
+        type: string
+      medias:
+        items:
+          $ref: '#/definitions/v1.Media'
+        type: array
+      name:
+        type: string
+      user_id:
+        type: string
+    type: object
+  v1.User:
+    properties:
+      address:
+        items:
+          $ref: '#/definitions/v1.Address'
+        type: array
+      bio:
+        type: string
+      code:
+        type: string
+      created_at:
+        type: string
+      deleted_at:
+        type: string
+      email:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      password:
+        type: string
+      phone_numbers:
+        items:
+          type: string
+        type: array
+      posts:
+        items:
+          $ref: '#/definitions/v1.Post'
+        type: array
+      status:
+        type: string
+      updated_at:
+        type: string
+      username:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /v1/user/user/user:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - BearerAuth: []
+      summary: SignIn summary
+      tags:
+      - user
+  /v1/users:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create user summary
+      tags:
+      - user
+  /v1/users/{id}:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: User_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get user summary
+      tags:
+      - user
+  /v1/users/alluser:
+    get:
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create user summary
+      tags:
+      - user
+  /v1/users/delete/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: User_id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: Succesfully
+      summary: Delete user summary
+      tags:
+      - user
+  /v1/users/login/user:
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Email
+        in: query
+        name: email
+        required: true
+        type: string
+      - description: Password
+        in: query
+        name: password
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - Bearer: []
+      summary: Get user summary
+      tags:
+      - user
+  /v1/users/register/user/{email}/{coded}:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Email
+        in: path
+        name: email
+        required: true
+        type: string
+      - description: Code
+        in: path
+        name: coded
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Post user summary
+      tags:
+      - user
+  /v1/users/registeruser:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Register user summary
+      tags:
+      - user
+  /v1/users/update/:id:
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: user body
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/v1.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Create user summary
+      tags:
+      - user
+  /v1/users/users:
+    get:
+      consumes:
+      - application/json
+      description: This api for delete user by id
+      parameters:
+      - description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      security:
+      - APiKeyAuth: []
+      summary: Get userlist summary
+      tags:
+      - user
+securityDefinitions:
+  BearerAuth:
+    description: GetMyProfile
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
