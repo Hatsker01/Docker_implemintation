@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"fmt"
 
 	pb "github.com/Hatsker01/Docker_implemintation/post-service/genproto"
 	l "github.com/Hatsker01/Docker_implemintation/post-service/pkg/logger"
@@ -11,6 +12,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	kafka "github.com/segmentio/kafka-go"
 )
 
 //PostService ...
@@ -28,7 +30,55 @@ func NewPostService(db *sqlx.DB, log l.Logger, client cl.GrpcClientI) *PostServi
 		client:  client,
 	}
 }
+func (s *PostService) Consume(ctx context.Context, a *pb.Emptya) (*pb.Emptya, error) {
+	// initialize a new reader with the brokers and topic
+	// the groupID identifies the consumer and prevents
+	// it from receiving duplicate messages
+	const (
+		topic          = "user.user"
+		broker1Address = "localhost:9092"
+	)
+	t := kafka.NewReader(kafka.ReaderConfig{
+		Brokers: []string{broker1Address},
+		Topic:   topic,
+	})
 
+	for {
+		// the `ReadMessage` method blocks until we receive the next event
+		msg, err := t.ReadMessage(ctx)
+		if err != nil {
+			return nil, err
+		}
+		var user pb.User
+
+		err = user.Unmarshal(msg.Value)
+		if err != nil {
+			return nil, err
+		}
+
+		for _, post := range user.Posts {
+			id, err := uuid.NewV4()
+			if err != nil {
+				s.logger.Error("failed while generating uuid for new post", l.Error(err))
+				return nil, status.Error(codes.Internal, "failed while generating uuid")
+			}
+			post.Id = id.String()
+			_, err = s.storage.Post().CreatePost(post)
+			if err != nil {
+				return nil, err
+			}
+		}
+		if err != nil {
+			panic("could not read message " + err.Error())
+		}
+		// after receiving the message, log its value
+		fmt.Println("received: ", string(msg.Value))
+
+	}
+
+	//Output:
+
+}
 func (s *PostService) CreatePost(ctx context.Context, req *pb.Post) (*pb.Post, error) {
 	id, err := uuid.NewV4()
 	if err != nil {

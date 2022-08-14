@@ -4,6 +4,7 @@ import (
 	"net"
 
 	"github.com/Hatsker01/Docker_implemintation/post-service/config"
+	"github.com/Hatsker01/Docker_implemintation/post-service/events"
 	pb "github.com/Hatsker01/Docker_implemintation/post-service/genproto"
 	"github.com/Hatsker01/Docker_implemintation/post-service/pkg/db"
 	"github.com/Hatsker01/Docker_implemintation/post-service/pkg/logger"
@@ -39,6 +40,8 @@ func main() {
 		log.Error("error establishing grpc connection", logger.Error(err))
 		return
 	}
+	postUserCreateTopic:=events.NewKafkaConsumer(connDB,&cfg,log,"user.user")
+	go postUserCreateTopic.Start()
 
 	postService := service.NewPostService(connDB, log, grpcC)
 
@@ -55,7 +58,7 @@ func main() {
 	if err := s.Serve(lis); err != nil {
 		log.Fatal("Error while listening: %v", logger.Error(err))
 	}
-
+	
 	dialOpts := []grpc.DialOption{grpc.WithInsecure()}
 	tracer, _, err := gtrace.NewJaegerTracer("testCli", "127.0.0.1:6831")
 	if err != nil {

@@ -8,7 +8,7 @@ proto-gen:
 	ls genproto/*.pb.go | xargs -n1 -IX bash -c "sed -e '/bool/ s/,omitempty//' X > X.tmp && mv X{.tmp,}"
 
 migrate-up:
-	migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/postdb up
+	migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/users up
 
 migrate-down:
 	migrate -source file:./migrations/ -database postgres://postgres:1@localhost:5432/postgres down

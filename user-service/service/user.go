@@ -12,6 +12,7 @@ import (
 
 	pb "github.com/Hatsker01/Docker_implemintation/user-service/genproto"
 	l "github.com/Hatsker01/Docker_implemintation/user-service/pkg/logger"
+	"github.com/Hatsker01/Docker_implemintation/user-service/pkg/messagebroker"
 	cl "github.com/Hatsker01/Docker_implemintation/user-service/service/grpc_client"
 	"github.com/Hatsker01/Docker_implemintation/user-service/storage"
 	"github.com/gofrs/uuid"
@@ -26,20 +27,59 @@ import (
 
 //UserService ...
 type UserService struct {
-	storage storage.IStorage
-	logger  l.Logger
-	client  cl.GrpcClientI
+	storage   storage.IStorage
+	logger    l.Logger
+	client    cl.GrpcClientI
+	publisher map[string]messagebroker.Publisher
 }
 
 //NewUserService ...
-func NewUserService(db *sqlx.DB, log l.Logger, client cl.GrpcClientI) *UserService {
+func NewUserService(db *sqlx.DB, log l.Logger, client cl.GrpcClientI, publisher map[string]messagebroker.Publisher) *UserService {
 	return &UserService{
-		storage: storage.NewStoragePg(db),
-		logger:  log,
-		client:  client,
+		storage:   storage.NewStoragePg(db),
+		logger:    log,
+		client:    client,
+		publisher: publisher,
 	}
 }
 
+func (s *UserService) publisherUserMessage(user []byte) error {
+
+	err := s.publisher["user"].Publish([]byte("user"), user, string(user))
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+// func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.User, error) {
+// 	id, err := uuid.NewV4()
+// 	if err != nil {
+// 		s.logger.Error("failed while generating uuid for user", l.Error(err))
+// 		return nil, status.Error(codes.Internal, "failed while generating uuid for user")
+// 	}
+// 	req.Id = id.String()
+// 	fmt.Println(id)
+// 	user, err := s.storage.User().CreateUser(req)
+// 	if err != nil {
+// 		s.logger.Error("failed while creating user", l.Error(err))
+// 		return nil, status.Error(codes.Internal, "failed while creating user")
+// 	}
+// 	fmt.Println(req)
+// 	if req.Posts != nil {
+// 		for _, post := range req.Posts {
+// 			post.UserId = req.Id
+// 			createdPosts, err := s.client.PostService().CreatePost(context.Background(), post)
+// 			if err != nil {
+// 				s.logger.Error("failed while inserting user post", l.Error(err))
+// 				return nil, status.Error(codes.Internal, "failed while inserting user post")
+// 			}
+// 			fmt.Println(createdPosts)
+// 		}
+// 	}
+// 	return user, nil
+// }
 func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.User, error) {
 	id, err := uuid.NewV4()
 	if err != nil {
@@ -47,24 +87,56 @@ func (s *UserService) CreateUser(ctx context.Context, req *pb.User) (*pb.User, e
 		return nil, status.Error(codes.Internal, "failed while generating uuid for user")
 	}
 	req.Id = id.String()
-	fmt.Println(id)
 	user, err := s.storage.User().CreateUser(req)
 	if err != nil {
 		s.logger.Error("failed while creating user", l.Error(err))
 		return nil, status.Error(codes.Internal, "failed while creating user")
 	}
-	fmt.Println(req)
-	if req.Posts != nil {
-		for _, post := range req.Posts {
-			post.UserId = req.Id
-			createdPosts, err := s.client.PostService().CreatePost(context.Background(), post)
-			if err != nil {
-				s.logger.Error("failed while inserting user post", l.Error(err))
-				return nil, status.Error(codes.Internal, "failed while inserting user post")
-			}
-			fmt.Println(createdPosts)
-		}
+	user.Posts = req.Posts
+	// if req.Posts != nil {
+	// 	for _, post := range req.Posts {
+	// 		post.UserId = req.Id
+	// 		_, err := s.client.PostService().CreatePost(context.Background(), post)
+	// 		if err != nil {
+	// 			s.logger.Error("failed while inserting user post", l.Error(err))
+	// 			return nil, status.Error(codes.Internal, "failed while inserting user post")
+	// 		}
+
+	// 	}
+	// }
+
+	p, _ := user.Marshal()
+	var usera pb.User
+	err = usera.Unmarshal(p)
+	if err != nil {
+		fmt.Println(err)
+		return nil, err
 	}
+	fmt.Println(user)
+
+	err = s.publisherUserMessage(p)
+	if err != nil {
+		s.logger.Error("failed while publishing user info", l.Error(err))
+		return nil, status.Error(codes.Internal, "failed while publishing user info")
+
+	}
+	// if req.Posts != nil {
+	// 	for _, post := range req.Posts {
+	// 		post.UserId = req.Id
+	// 		_, err := s.client.PostService().CreatePost(context.Background(), post)
+	// 		if err != nil {
+	// 			s.logger.Error("failed while inserting user post", l.Error(err))
+	// 			return nil, status.Error(codes.Internal, "failed while inserting user post")
+	// 		}
+
+	// 	}
+	// }
+	// time.Sleep(time.Millisecond*1000)
+	// _,err=s.client.PostService().Consume(ctx,&pb.Emptya{})
+	// if err!=nil{
+	// 	return nil,err
+	// }
+
 	return user, nil
 }
 

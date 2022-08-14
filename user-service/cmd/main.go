@@ -1,14 +1,14 @@
 package main
 
 import (
-	"context"
 	"net"
 
 	"github.com/Hatsker01/Docker_implemintation/user-service/config"
+	"github.com/Hatsker01/Docker_implemintation/user-service/events"
 	pb "github.com/Hatsker01/Docker_implemintation/user-service/genproto"
 	"github.com/Hatsker01/Docker_implemintation/user-service/pkg/db"
 	"github.com/Hatsker01/Docker_implemintation/user-service/pkg/logger"
-	trace "github.com/Hatsker01/Docker_implemintation/user-service/pkg/trace"
+	"github.com/Hatsker01/Docker_implemintation/user-service/pkg/messagebroker"
 	"github.com/Hatsker01/Docker_implemintation/user-service/service"
 	grpcClient "github.com/Hatsker01/Docker_implemintation/user-service/service/grpc_client"
 	"google.golang.org/grpc"
@@ -37,7 +37,21 @@ func main() {
 		return
 	}
 
-	userService := service.NewUserService(connDB, log, grpcC)
+	//Kafka
+	publisherMap := make(map[string]messagebroker.Publisher)
+
+	userTopicPublisher := events.NewKafkaProducerBroker(cfg, log, "user.user")
+	defer func() {
+		err := userTopicPublisher.Stop()
+		if err != nil {
+			log.Fatal("failed to stop kafka user", logger.Error(err))
+		}
+	}()
+
+	publisherMap["user"] = userTopicPublisher
+	//Kafka End
+
+	userService := service.NewUserService(connDB, log, grpcC,publisherMap)
 
 	lis, err := net.Listen("tcp", cfg.RPCPort)
 	if err != nil {
@@ -53,34 +67,4 @@ func main() {
 		log.Fatal("Error while listening: %v", logger.Error(err))
 	}
 
-	ctx := context.Background()
-	prv, err := trace.NewProvider(trace.ProviderConfig{
-		JaegerEndpoint: "http://localhost:14268/api/traces",
-		ServiceName:    "server",
-		ServiceVersion: "2.0.0",
-		Environment:    "dev",
-		Disabled:       false,
-	})
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer prv.Close(ctx)
-
-	// Bootstrap listener.
-	listener, err := net.Listen("tcp", ":50051")
-	if err != nil {
-		log.Fatalln(err)
-	}
-	defer listener.Close()
-
-	// Bootstrap gRPC server.
-	grpcServer := grpc.NewServer(
-		grpc.UnaryInterceptor(trace.NewGRPUnaryServerInterceptor()),
-	)
-
-	// Bootstrap bank gRPC service server and respond to requests.
-	bankAccService := bank.AccountService{}
-	bankpb.RegisterAccountServiceServer(grpcServer, bankAccService)
-
-	log.Fatalln(grpcServer.Serve(listener))
 }

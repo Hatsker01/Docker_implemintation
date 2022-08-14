@@ -1,0 +1,113 @@
+version: "3.8"
+
+services:
+  user_service:
+    container_name: user_service
+    build: ./user-service
+    depends_on:
+      - "kafka"
+      - "dbpost"
+    ports:
+      - "9000:9000"
+    command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/users up"
+
+  post_service:
+    container_name: post_service
+    build: ./post-service
+    depends_on:
+      - "dbpost"
+    ports:
+      - "7007:7007"
+    command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/postdb up"
+
+  api:
+    container_name: api
+    build: ./api  
+    depends_on:
+      -  "redisdb"
+      -  "user_service"
+      -  "post_service"
+    ports:
+      - "8090:8090"
+      
+  
+
+  
+  
+
+
+  # dbuser:
+  #   container_name: dbuser
+  #   image: postgres:14.1
+  #   environment:
+  #     POSTGRES_DATABASE: users
+  #     POSTGRES_USER: hatsker
+  #     POSTGRES_PASSWORD: 1
+  #   ports: 
+  #     - "5432:5432"
+  #   volumes:
+  #     - dbdata:/var/lib/postgresql/data
+    # volumes:
+    #   - ./database/user.sql:docker-entrypoint-initdb.d/user.sql
+
+  dbpost:
+    container_name: dbpost
+    image: postgres:14.1
+    environment:
+      POSTGRES_DATABASE: postdb
+      POSTGRES_USER: hatsker
+      POSTGRES_PASSWORD: 1
+    expose:
+      - "5433"
+    ports: 
+      - "5433:5433"
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    command: -p 5433
+
+
+  redisdb:
+    container_name: redisdb
+    image:  redis
+    expose:
+      - "6378"
+    ports:
+      - "6378:6378"
+    
+  
+
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "22181:2181"
+  
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+
+    ports:
+      - "29092:29092"
+
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      # KAFKA_LISTENERS: PLAINTEXT://:9092,PLAINTEXT_HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+  
+
+
+
+
+
+volumes:
+  dbdata:
+
+
+      
