@@ -3,13 +3,13 @@ version: "3.8"
 services:
   user_service:
     container_name: user_service
-    build: ./user-service
+    build:  ./user-service
     depends_on:
       - "kafka"
       - "dbpost"
     ports:
       - "9000:9000"
-    command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/users up"
+ #   command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/users up"
 
   post_service:
     container_name: post_service
@@ -18,7 +18,7 @@ services:
       - "dbpost"
     ports:
       - "7007:7007"
-    command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/postdb up"
+ #   command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/postdb up"
 
   api:
     container_name: api
@@ -53,6 +53,10 @@ services:
   dbpost:
     container_name: dbpost
     image: postgres:14.1
+    networks:
+            new:
+                aliases:
+                    - database
     environment:
       POSTGRES_DATABASE: postdb
       POSTGRES_USER: hatsker
@@ -64,6 +68,17 @@ services:
     volumes:
       - dbdata:/var/lib/postgresql/data
     command: -p 5433
+  migrate:
+    image: migrate/migrate
+    networks:
+      - new
+    volumes:
+      - ./migrations:/migrations
+    command: ["-path", "/migrations/userdb", "-database",  "postgres://hatsker:1@dbpost:5433/users?sslmode=disable", "up", "1" ," && -path", "/migrations/postdb", "-database",  "postgres://hatsker:1@dbpost:5433/postdb?sslmode=disable", "up", "1"]
+    # command:  "migrate -source file:./migrations/userdb/ -database postgres://postgres:1@dbuser:5433/users up 1 && migrate -source file:./migrations/postdb/ -database postgres://hatsker:1@dbpost:5433/postdb up 1"
+    # postgres://databaseusername:databasepassword@databaseservicename:5432/database?sslmode=disable
+    links: 
+      - dbpost
 
 
   redisdb:
@@ -104,8 +119,8 @@ services:
 
 
 
-
-
+networks:
+  new:
 volumes:
   dbdata:
 

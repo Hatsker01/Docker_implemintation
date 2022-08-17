@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 12:03:39 2022
+# Make data base, printed on Wed Aug 17 12:09:06 2022
 
 # Variables
 
@@ -47,7 +47,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:64398
+JOURNAL_STREAM = 8:68144
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -69,7 +69,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-MANAGERPID = 5253
+MANAGERPID = 4436
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -87,7 +87,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/5561,unix/hatsker:/tmp/.ICE-unix/5561
+SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/4953,unix/hatsker:/tmp/.ICE-unix/4953
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +97,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = c652f886d1774fc1b66f49da4fe92404
+INVOCATION_ID = 1cb25cbb24c94cfaaaaac578c258cec2
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -107,7 +107,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6222
+GIO_LAUNCHED_DESKTOP_FILE_PID = 12009
 # automatic
 %F = $(notdir $%)
 # environment
@@ -117,7 +117,7 @@ PWD = /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 5524
+SSH_AGENT_PID = 4916
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -189,8 +189,6 @@ GDK_BACKEND = x11
 # environment
 LC_PAPER = uz_UZ.UTF-8
 # environment
-NO_AT_BRIDGE = 1
-# environment
 QT_ACCESSIBILITY = 1
 # environment
 DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
@@ -225,9 +223,9 @@ LC_ADDRESS = uz_UZ.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6222
+VSCODE_PID = 12009
 # variable set hash-table stats:
-# Load=107/1024=10%, Rehash=0, Collisions=18/129=14%
+# Load=106/1024=10%, Rehash=0, Collisions=18/128=14%
 
 # Pattern-specific Variable Values
 
@@ -235,9 +233,9 @@ VSCODE_PID = 6222
 
 # Directories
 
-# . (device 57, inode 1411786): 9 files, no impossibilities.
+# . (device 52, inode 1411786): 10 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -287,13 +285,13 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 17 / storage = 161 B / avg = 9 B
-# current buf: size = 8162 B / used = 161 B / count = 17 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 172 B / avg = 9 B
+# current buf: size = 8162 B / used = 172 B / count = 18 / avg = 9 B
 
-# strcache performance: lookups = 20 / hit rate = 15%
+# strcache performance: lookups = 21 / hit rate = 14%
 # hash-table stats:
  
-# Load=17/8192=0%, Rehash=0, Collisions=1/20=5%
-# Finished Make data base on Sun Aug 14 12:03:39 2022
+# Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
+# Finished Make data base on Wed Aug 17 12:09:06 2022
 
  

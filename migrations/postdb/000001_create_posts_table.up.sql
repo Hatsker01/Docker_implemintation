@@ -3,8 +3,7 @@ CREATE TABLE IF NOT EXISTS posts
     id uuid not null primary key,
     name text ,
     description text,
-    user_id uuid,
-
+    user_id uuid
 );
 
 CREATE TABLE IF NOT EXISTS medias(
