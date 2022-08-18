@@ -74,7 +74,7 @@ services:
       - new
     volumes:
       - ./migrations:/migrations
-    command: ["-path", "/migrations/userdb", "-database",  "postgres://hatsker:1@dbpost:5433/users?sslmode=disable", "up", "1" ," && -path", "/migrations/postdb", "-database",  "postgres://hatsker:1@dbpost:5433/postdb?sslmode=disable", "up", "1"]
+    command: ["-path", "/migrations/postdb", "-database",  "postgres://hatsker:1@dbpost:5433/userdb?sslmode=disable", "up"]
     # command:  "migrate -source file:./migrations/userdb/ -database postgres://postgres:1@dbuser:5433/users up 1 && migrate -source file:./migrations/postdb/ -database postgres://hatsker:1@dbpost:5433/postdb up 1"
     # postgres://databaseusername:databasepassword@databaseservicename:5432/database?sslmode=disable
     links: 

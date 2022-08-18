@@ -1,3 +1,4 @@
+
 CREATE TABLE IF NOT EXISTS users
 (
     id uuid not null primary key,

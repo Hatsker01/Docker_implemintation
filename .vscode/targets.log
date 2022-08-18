@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 17 12:09:06 2022
+# Make data base, printed on Thu Aug 18 07:14:25 2022
 
 # Variables
 
@@ -47,7 +47,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:68144
+JOURNAL_STREAM = 8:67984
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -69,7 +69,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-MANAGERPID = 4436
+MANAGERPID = 4748
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -87,7 +87,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/4953,unix/hatsker:/tmp/.ICE-unix/4953
+SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/5110,unix/hatsker:/tmp/.ICE-unix/5110
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +97,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 1cb25cbb24c94cfaaaaac578c258cec2
+INVOCATION_ID = 975909a1387741edad3599318e202284
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -107,7 +107,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 12009
+GIO_LAUNCHED_DESKTOP_FILE_PID = 6857
 # automatic
 %F = $(notdir $%)
 # environment
@@ -117,7 +117,7 @@ PWD = /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 4916
+SSH_AGENT_PID = 5073
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -223,7 +223,7 @@ LC_ADDRESS = uz_UZ.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 12009
+VSCODE_PID = 6857
 # variable set hash-table stats:
 # Load=106/1024=10%, Rehash=0, Collisions=18/128=14%
 
@@ -292,6 +292,6 @@ GNUmakefile:
 # hash-table stats:
  
 # Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Wed Aug 17 12:09:06 2022
+# Finished Make data base on Thu Aug 18 07:14:25 2022
 
  
