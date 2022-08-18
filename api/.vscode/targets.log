@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Aug  2 07:12:54 2022
+# Make data base, printed on Thu Aug 18 14:57:46 2022
 
 # Variables
 
@@ -28,8 +28,6 @@ XDG_SESSION_CLASS = user
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
-# environment
-IM_CONFIG_PHASE = 1
 # automatic
 @D = $(patsubst %/,%,$(dir $@))
 # environment
@@ -43,11 +41,11 @@ CURDIR := /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation/api
 # makefile
 SHELL = /bin/sh
 # environment
+VTE_VERSION = 6003
+# environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-_ = /usr/share/code/code
-# environment
-JOURNAL_STREAM = 8:62271
+JOURNAL_STREAM = 8:75068
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -55,25 +53,29 @@ MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
-GIO_LAUNCHED_DESKTOP_FILE = /usr/share/applications/code.desktop
+IM_CONFIG_PHASE = 1
 # environment
 USERNAME = jamshidbek
 # environment
 MAKELEVEL := 0
 # environment
+MANDATORY_PATH = /usr/share/gconf/ubuntu.mandatory.path
+# environment
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus,guid=991bfafc019414fad8384fc762fe0ae0
 # environment
-MANAGERPID = 4655
+_ = /usr/bin/code
+# environment
+MANAGERPID = 5004
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
 LC_NAME = uz_UZ.UTF-8
 # environment
-VSCODE_CWD = /home/jamshidbek
+VSCODE_CWD = /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation/api
 # environment
 GOPROXY = https://proxy.golang.org,direct
 # default
@@ -83,9 +85,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-GJS_DEBUG_OUTPUT = stderr
-# environment
-SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/4924,unix/hatsker:/tmp/.ICE-unix/4924
+SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/5287,unix/hatsker:/tmp/.ICE-unix/5287
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -95,17 +95,17 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = f60db121a1cb4537a342541291f68ae6
+INVOCATION_ID = 2019250c58264197860c5457edc02007
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
-LS_COLORS = 
+LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 16099
+# makefile (from 'Makefile', line 1)
+CURRENT_DIR = $(shell pwd)
 # automatic
 %F = $(notdir $%)
 # environment
@@ -115,7 +115,7 @@ PWD = /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation/api
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 4887
+SSH_AGENT_PID = 5250
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -127,13 +127,17 @@ HOME = /home/jamshidbek
 # environment
 LESSCLOSE = /usr/bin/lesspipe %s %s
 # environment
-VSCODE_CODE_CACHE_PATH = /home/jamshidbek/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /home/jamshidbek/.config/Code/CachedData/6d9b74a70ca9c7733b29f0456fd8195364076dda
 # environment
 LOGNAME = jamshidbek
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 +F = $(notdir $+)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -142,6 +146,8 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
 LC_TIME = uz_UZ.UTF-8
+# environment
+COLORTERM = truecolor
 # default
 MAKE = $(MAKE_COMMAND)
 # default
@@ -149,7 +155,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # environment
-SHLVL = 0
+SHLVL = 1
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # default
@@ -170,14 +176,14 @@ LC_TELEPHONE = uz_UZ.UTF-8
 APP = template
 # default
 MAKE_COMMAND := make
+# environment
+OLDPWD = /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation
 # default
 .VARIABLES := 
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-71efb8d6-1.69.2-main.sock
-# makefile (from 'Makefile', line 1)
-CURRENT_DIR = $(shell pwd)
+VSCODE_IPC_HOOK = /run/user/1000/vscode-71efb8d6-1.70.1-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -194,6 +200,8 @@ LC_PAPER = uz_UZ.UTF-8
 NO_AT_BRIDGE = 1
 # environment
 QT_ACCESSIBILITY = 1
+# environment
+DEFAULTS_PATH = /usr/share/gconf/ubuntu.default.path
 # default
 MAKEFILES := 
 # environment
@@ -205,9 +213,13 @@ LC_MEASUREMENT = uz_UZ.UTF-8
 # environment
 LC_ALL = C
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+DBUS_STARTER_BUS_TYPE = session
+# environment
+GNOME_TERMINAL_SCREEN = /org/gnome/Terminal/screen/d018ce6c_555f_46ab_a824_9f5f78ed9f65
 # automatic
 ^F = $(notdir $^)
+# environment
+GNOME_TERMINAL_SERVICE = :1.94
 # default
 SUFFIXES := 
 # environment
@@ -227,9 +239,13 @@ LC_ADDRESS = uz_UZ.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 16099
+TERM = xterm-256color
+# environment
+VSCODE_PID = 10013
+# environment
+DBUS_STARTER_ADDRESS = unix:path=/run/user/1000/bus,guid=991bfafc019414fad8384fc762fe0ae0
 # variable set hash-table stats:
-# Load=108/1024=11%, Rehash=0, Collisions=21/133=16%
+# Load=116/1024=11%, Rehash=0, Collisions=20/141=14%
 
 # Pattern-specific Variable Values
 
@@ -237,9 +253,9 @@ VSCODE_PID = 16099
 
 # Directories
 
-# . (device 53, inode 122886): 16 files, no impossibilities.
+# . (device 52, inode 1411878): 17 files, no impossibilities.
 
-# 16 files, no impossibilities in 1 directories.
+# 17 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -264,7 +280,7 @@ proto-gen:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-06-09 11:26:58.745844626
+#  Last modified 2022-06-09 11:26:58.745844
 #  File has been updated.
 #  Successfully updated.
 
@@ -287,6 +303,7 @@ swag-gen:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 15):
 	echo ${REGISTRY}
+ 
 	swag init -g api/router.go -o api/docs
 
 lint:
@@ -297,7 +314,6 @@ lint:
 	golangci-lint -c .golangci.yaml run --build-tags "musl" ./...
 
 # files hash-table stats:
- 
 # Load=8/1024=1%, Rehash=0, Collisions=0/18=0%
 # VPATH Search Paths
 
@@ -305,12 +321,12 @@ lint:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 25 / storage = 186 B / avg = 7 B
-# current buf: size = 8162 B / used = 186 B / count = 25 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 26 / storage = 197 B / avg = 7 B
+# current buf: size = 8162 B / used = 197 B / count = 26 / avg = 7 B
 
-# strcache performance: lookups = 33 / hit rate = 24%
+# strcache performance: lookups = 34 / hit rate = 23%
 # hash-table stats:
-# Load=25/8192=0%, Rehash=0, Collisions=1/33=3%
-# Finished Make data base on Tue Aug  2 07:12:54 2022
+# Load=26/8192=0%, Rehash=0, Collisions=1/34=3%
+# Finished Make data base on Thu Aug 18 14:57:46 2022
 
  

@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Aug 18 14:28:11 2022
+# Make data base, printed on Thu Aug 18 18:04:03 2022
 
 # Variables
 
@@ -47,7 +45,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:66443
+JOURNAL_STREAM = 8:64403
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -69,7 +67,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
-MANAGERPID = 5016
+MANAGERPID = 5152
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # environment
@@ -87,7 +85,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/5284,unix/hatsker:/tmp/.ICE-unix/5284
+SESSION_MANAGER = local/hatsker:@/tmp/.ICE-unix/5432,unix/hatsker:/tmp/.ICE-unix/5432
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -97,7 +95,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = c6466931b035463580b4cc7db35f3e5c
+INVOCATION_ID = 421e5817fed24276838f49cdb14c6b8e
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -107,7 +105,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 128214
+GIO_LAUNCHED_DESKTOP_FILE_PID = 14044
 # automatic
 %F = $(notdir $%)
 # environment
@@ -117,7 +115,7 @@ PWD = /home/jamshidbek/go/src/github.com/Hatsker01/Docker_implemintation
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 5247
+SSH_AGENT_PID = 5395
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -223,7 +221,7 @@ LC_ADDRESS = uz_UZ.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 128214
+VSCODE_PID = 14044
 # variable set hash-table stats:
 # Load=106/1024=10%, Rehash=0, Collisions=18/128=14%
 
@@ -290,7 +288,10 @@ GNUmakefile:
 
 # strcache performance: lookups = 21 / hit rate = 14%
 # hash-table stats:
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 # Load=18/8192=0%, Rehash=0, Collisions=1/21=5%
-# Finished Make data base on Thu Aug 18 14:28:11 2022
+# Finished Make data base on Thu Aug 18 18:04:03 2022
 
  

@@ -8,13 +8,13 @@ services:
       - new
     volumes:
       - ./migrations:/migrations
-    command: ["-path", "/migrations/postdb", "-database",  "postgres://postgres:123jamshid@database-1.cqgpi523wr5p.ap-south-1.rds.amazonaws.com:5432/postdb?sslmode=disable", "up"]
+    command: ["-path", "/migrations/postdb", "-database",  "postgres://postgres:123jamshid@database-3.cqgpi523wr5p.ap-south-1.rds.amazonaws.com:5432/postdb?sslmode=disable", "up"]
 
   user_service:
     container_name: user_service
     build:  ./user-service
     depends_on:
-      - "migrate"
+      - migrate
       - "kafka"
     ports:
       - "9000:9000"
@@ -24,7 +24,7 @@ services:
     container_name: post_service
     build: ./post-service
     depends_on:
-      - "migrate"
+      - migrate
     ports:
       - "7007:7007"
  #   command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/postdb up"
