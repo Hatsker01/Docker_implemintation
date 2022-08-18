@@ -1,12 +1,20 @@
 version: "3.8"
 
 services:
+  migrate:
+    container_name: migrate
+    image: migrate/migrate
+    networks:
+      - new
+    volumes:
+      - ./migrations:/migrations
+    command: ["-path", "/migrations/postdb", "-database",  "postgres://postgres:123jamshid@database-1.cqgpi523wr5p.ap-south-1.rds.amazonaws.com:5432/postdb?sslmode=disable", "up"]
+
   user_service:
     container_name: user_service
     build:  ./user-service
     depends_on:
       - "kafka"
-      - "dbpost"
     ports:
       - "9000:9000"
  #   command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/users up"
@@ -14,8 +22,6 @@ services:
   post_service:
     container_name: post_service
     build: ./post-service
-    depends_on:
-      - "dbpost"
     ports:
       - "7007:7007"
  #   command: "migrate -source file:./migrations/ -database postgres://hatsker:1@dbpost:5433/postdb up"
@@ -50,35 +56,8 @@ services:
     # volumes:
     #   - ./database/user.sql:docker-entrypoint-initdb.d/user.sql
 
-  dbpost:
-    container_name: dbpost
-    image: postgres:14.1
-    networks:
-            new:
-                aliases:
-                    - database
-    environment:
-      POSTGRES_DATABASE: postdb
-      POSTGRES_USER: hatsker
-      POSTGRES_PASSWORD: 1
-    expose:
-      - "5433"
-    ports: 
-      - "5433:5433"
-    volumes:
-      - dbdata:/var/lib/postgresql/data
-    command: -p 5433
-  migrate:
-    image: migrate/migrate
-    networks:
-      - new
-    volumes:
-      - ./migrations:/migrations
-    command: ["-path", "/migrations/postdb", "-database",  "postgres://hatsker:1@dbpost:5433/userdb?sslmode=disable", "up"]
-    # command:  "migrate -source file:./migrations/userdb/ -database postgres://postgres:1@dbuser:5433/users up 1 && migrate -source file:./migrations/postdb/ -database postgres://hatsker:1@dbpost:5433/postdb up 1"
-    # postgres://databaseusername:databasepassword@databaseservicename:5432/database?sslmode=disable
-    links: 
-      - dbpost
+  
+       
 
 
   redisdb:
@@ -121,8 +100,6 @@ services:
 
 networks:
   new:
-volumes:
-  dbdata:
 
 
       
